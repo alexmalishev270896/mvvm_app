@@ -1,0 +1,4 @@
+include ':app'
+rootProject.name='MvvmApp'
+include ':domain_layer'
+include ':data_layer'

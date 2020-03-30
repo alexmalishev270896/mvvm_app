@@ -1,0 +1,65 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion rootProject.ext.projectCompileSdkVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.projectMinSdkVersion
+        targetSdkVersion rootProject.ext.projectTargetSdkVersion
+        versionCode rootProject.ext.projectVersionCode
+        versionName rootProject.ext.projectVersionName
+        testInstrumentationRunner rootProject.ext.projectTestRunner
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            debuggable true
+            versionNameSuffix "-DEBUG"
+            signingConfig android.signingConfigs.debug
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    def dataDependencies = rootProject.ext.dataDependencies
+    def dataTestDependencies = rootProject.ext.dataTestDependencies
+    implementation dataDependencies.kotlin
+    implementation dataDependencies.coreKtx
+    implementation dataDependencies.javaxAnnotation
+    implementation dataDependencies.javaxInject
+    implementation dataDependencies.retrofit
+    implementation dataDependencies.rxAndroid
+    implementation dataDependencies.retrofitConverterGson
+    implementation dataDependencies.retrofitRxJavaAdapter
+    implementation dataDependencies.retrofit2rxjava2adapter
+    implementation dataDependencies.room
+    implementation dataDependencies.roomKtx
+    implementation dataDependencies.androidAnnotations
+
+    kapt dataDependencies.roomCompiler
+    testImplementation dataTestDependencies.junit
+    androidTestImplementation dataTestDependencies.espresso
+}

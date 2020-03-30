@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
+android {
+    compileSdkVersion rootProject.ext.projectCompileSdkVersion
+    defaultConfig {
+        applicationId rootProject.ext.projectAppId
+        minSdkVersion rootProject.ext.projectMinSdkVersion
+        targetSdkVersion rootProject.ext.projectTargetSdkVersion
+        versionCode rootProject.ext.projectVersionCode
+        versionName rootProject.ext.projectVersionName
+        testInstrumentationRunner rootProject.ext.projectTestRunner
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            debuggable true
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-DEBUG"
+            signingConfig android.signingConfigs.debug
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    def presentationDependencies = rootProject.ext.presentationDependencies
+    def presentationTestDependencies = rootProject.ext.presentationTestDependencies
+
+    implementation presentationDependencies.kotlin
+    implementation presentationDependencies.coreKtx
+
+    implementation presentationDependencies.appcompat
+    implementation presentationDependencies.constraintLayout
+
+    implementation presentationDependencies.navFragmentKtx
+    implementation presentationDependencies.navUiKtx
+
+    implementation presentationDependencies.lifecycleExtensions
+    implementation presentationDependencies.lifecycleViewmodel
+
+    testImplementation presentationTestDependencies.junit
+    androidTestImplementation presentationTestDependencies.espresso
+    androidTestImplementation presentationTestDependencies.testRunner
+}
