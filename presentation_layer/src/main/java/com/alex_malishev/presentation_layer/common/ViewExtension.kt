@@ -1,0 +1,5 @@
+package com.alex_malishev.presentation_layer.common
+
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.alex_malishev.presentation_layer.ui.base.BaseRecyclerAdapter

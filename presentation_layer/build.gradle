@@ -1,0 +1,65 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion rootProject.ext.projectCompileSdkVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.projectMinSdkVersion
+        targetSdkVersion rootProject.ext.projectTargetSdkVersion
+        versionCode rootProject.ext.projectVersionCode
+        versionName rootProject.ext.projectVersionName
+        testInstrumentationRunner rootProject.ext.projectTestRunner
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    def presentationDependencies = rootProject.ext.presentationDependencies
+    def presentationTestDependencies = rootProject.ext.presentationTestDependencies
+
+    implementation presentationDependencies.kotlin
+    implementation presentationDependencies.coreKtx
+
+    implementation presentationDependencies.appcompat
+    implementation presentationDependencies.constraintLayout
+
+    implementation presentationDependencies.navFragmentKtx
+    implementation presentationDependencies.navUiKtx
+
+    implementation presentationDependencies.lifecycleExtensions
+    implementation presentationDependencies.lifecycleViewmodel
+    implementation presentationDependencies.lifecycleRxStreams
+
+    implementation presentationDependencies.rxJava
+    implementation presentationDependencies.rxAndroid
+    implementation presentationDependencies.rxKotlin
+
+    implementation presentationDependencies.glide
+
+    implementation presentationDependencies.daggerAndroidSupport
+
+    testImplementation presentationTestDependencies.junit
+    androidTestImplementation presentationTestDependencies.espresso
+    androidTestImplementation presentationTestDependencies.testRunner
+
+    implementation project(':domain_layer')
+}
