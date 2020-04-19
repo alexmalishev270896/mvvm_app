@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_recent_news">Recent News</string>
+    <string name="label_recent_news">Recent</string>
+    <string name="title_sources">Sources</string>
+    <string name="title_search">Search</string>
+    <string name="title_saved">Saved</string>
+    <string name="cd_recent_news">Recent news</string>
+    <string name="cd_sources">Sources</string>
+    <string name="cd_search">Search</string>
+    <string name="cd_saved">Saved</string>
+</resources>
