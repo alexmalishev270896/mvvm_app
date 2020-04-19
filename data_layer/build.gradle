@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: "scabbard.gradle"
 
 android {
     compileSdkVersion rootProject.ext.projectCompileSdkVersion
@@ -40,6 +41,10 @@ android {
         test.java.srcDirs += 'src/test/kotlin'
     }
 
+    scabbard {
+        enabled true
+    }
+
 }
 
 dependencies {
@@ -51,15 +56,22 @@ dependencies {
     implementation dataDependencies.javaxAnnotation
     implementation dataDependencies.javaxInject
     implementation dataDependencies.retrofit
+    implementation dataDependencies.retrofitLogger
     implementation dataDependencies.rxAndroid
     implementation dataDependencies.retrofitConverterGson
-    implementation dataDependencies.retrofitRxJavaAdapter
     implementation dataDependencies.retrofit2rxjava2adapter
     implementation dataDependencies.room
     implementation dataDependencies.roomKtx
+    implementation dataDependencies.roomRx
     implementation dataDependencies.androidAnnotations
+    implementation dataDependencies.dagger
+    implementation dataDependencies.daggerAndroidSupport
 
     kapt dataDependencies.roomCompiler
+    kapt dataDependencies.daggerCompiler
+
     testImplementation dataTestDependencies.junit
     androidTestImplementation dataTestDependencies.espresso
+
+    implementation project(':domain_layer')
 }

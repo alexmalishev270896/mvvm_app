@@ -6,6 +6,10 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
+apply plugin: 'kotlin-kapt'
+
+apply plugin: "scabbard.gradle"
+
 android {
     compileSdkVersion rootProject.ext.projectCompileSdkVersion
     defaultConfig {
@@ -26,7 +30,6 @@ android {
             minifyEnabled false
             shrinkResources false
             debuggable true
-            applicationIdSuffix ".debug"
             versionNameSuffix "-DEBUG"
             signingConfig android.signingConfigs.debug
         }
@@ -42,26 +45,40 @@ android {
         androidTest.java.srcDirs += 'src/androidTest/kotlin'
         test.java.srcDirs += 'src/test/kotlin'
     }
+
+    scabbard {
+        enabled true
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    def presentationDependencies = rootProject.ext.presentationDependencies
+    def appDependencies = rootProject.ext.appDependecies
     def presentationTestDependencies = rootProject.ext.presentationTestDependencies
 
-    implementation presentationDependencies.kotlin
-    implementation presentationDependencies.coreKtx
+    implementation appDependencies.kotlin
+    implementation appDependencies.coreKtx
 
-    implementation presentationDependencies.appcompat
-    implementation presentationDependencies.constraintLayout
+    implementation appDependencies.dagger
+    implementation appDependencies.rxJava
+    implementation appDependencies.daggerAndroidSupport
+    implementation appDependencies.javaxInject
 
-    implementation presentationDependencies.navFragmentKtx
-    implementation presentationDependencies.navUiKtx
+    implementation appDependencies.appcompat
+    implementation appDependencies.constraintLayout
 
-    implementation presentationDependencies.lifecycleExtensions
-    implementation presentationDependencies.lifecycleViewmodel
+    implementation appDependencies.navFragmentKtx
+    implementation appDependencies.navUiKtx
+
+    implementation project(':data_layer')
+    implementation project(':domain_layer')
+    api project(':presentation_layer')
 
     testImplementation presentationTestDependencies.junit
     androidTestImplementation presentationTestDependencies.espresso
     androidTestImplementation presentationTestDependencies.testRunner
+
+    kapt appDependencies.daggerCompiler
+    kapt appDependencies.daggerAndroidProcessor
+
 }
