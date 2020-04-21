@@ -7,6 +7,11 @@ jobs:
     working_directory: ~/MvvmApp
     docker:
       - image: circleci/android:api-29
+    filters:
+      branches:
+        only:
+          - master
+          - develop
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
