@@ -25,8 +25,8 @@ import org.mockito.junit.MockitoJUnitRunner
 class NewsListViewModelTest {
 
     @get:Rule var instantTaskExecutorRule = InstantTaskExecutorRule()
-    @Mock lateinit var getRecentNewsListUseCase: IGetRecentNewsUseCase
-    @Mock lateinit var observer: Observer<ViewState<List<NewsParcelable>>>
+    private val getRecentNewsListUseCase: IGetRecentNewsUseCase = mock(IGetRecentNewsUseCase::class.java)
+    private val observer: Observer<ViewState<List<NewsParcelable>>> = mock(Observer::class.java) as Observer<ViewState<List<NewsParcelable>>>
     private val schedulerProvider: BaseSchedulerProvider = TestSchedulerProvider()
     private lateinit var newsListViewModel: NewsListViewModel
 
