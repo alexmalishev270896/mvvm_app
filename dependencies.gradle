@@ -39,6 +39,7 @@ ext {
     //Testing
     robolectricVersion = '3.1.1'
     jUnitVersion = '4.12'
+    jUnitAndroidVersion = '1.1.1'
     assertJVersion = '1.7.1'
     mockitoVersion = '2.19.0'
     dexmakerVersion = '1.0'
@@ -46,6 +47,7 @@ ext {
     testingSupportLibVersion = '0.1'
     mockitoAndroidVersion = "2.7.22"
     testRunnerVersion = "1.2.0"
+    coreTestVersion = "2.1.0"
 
     //Development
     leakCanaryVersion = '1.3.1'
@@ -101,7 +103,8 @@ ext {
             testingSupportLib: "com.android.support.test:testing-support-lib:${testingSupportLibVersion}",
             mockitoAndroid   : "org.mockito:mockito-android:${mockitoAndroidVersion}",
             mockitoInline    : "org.mockito:mockito-inline:${mockitoVersion}",
-            junit            : "junit:junit:${jUnitVersion}",
+            junit            : "androidx.test.ext:junit:${jUnitAndroidVersion}",
+            coreTest         : "androidx.arch.core:core-testing:$coreTestVersion",
             assertj          : "org.assertj:assertj-core:${assertJVersion}",
             testRunner       : "androidx.test:runner:${testRunnerVersion}",
 
@@ -145,7 +148,7 @@ ext {
     ]
 
     dataTestDependencies = [
-            junit      : "junit:junit:${jUnitVersion}",
+            junit      : "androidx.test.ext:junit:${jUnitAndroidVersion}",
             assertj    : "org.assertj:assertj-core:${assertJVersion}",
             mockito    : "org.mockito:mockito-core:${mockitoVersion}",
             espresso   : "androidx.test.espresso:espresso-core:${espressoVersion}",

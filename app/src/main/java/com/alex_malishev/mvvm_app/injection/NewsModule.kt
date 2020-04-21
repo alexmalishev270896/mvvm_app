@@ -12,9 +12,10 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class NewsModule {
+object NewsModule {
 
     @Provides
+    @JvmStatic
     fun provideNewsRepository(
         newsLocalSource: INewsLocalSource,
         newsRemoteSource: INewsRemoteSource
@@ -23,14 +24,17 @@ class NewsModule {
     }
 
     @Provides
+    @JvmStatic
     fun provideNewsLocalSource(newsDao: NewsDao): INewsLocalSource {
         return NewsLocalSource(newsDao)
     }
 
     @Provides
+    @JvmStatic
     fun provideNewsDao(daoProvider: DaoProvider) = daoProvider.newsDao()
 
     @Provides
+    @JvmStatic
     fun provideNewsRemoteSource(serviceGenerator: ServiceGenerator): INewsRemoteSource {
         return serviceGenerator.createService(INewsRemoteSource::class.java)
     }
