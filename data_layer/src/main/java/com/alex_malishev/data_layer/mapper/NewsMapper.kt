@@ -26,7 +26,8 @@ fun NewsAPI.NewsSourceResponse.toDomain(): NewsSource {
 }
 
 fun News.toDbEntity(): NewsDb.NewsEntity {
-    return NewsDb.NewsEntity(title, date, author, description, url, imageUrl, source?.id, source?.name)
+    return NewsDb.NewsEntity(title, date, author, description, url, imageUrl,
+        sourceId =  source?.id, sourceName = source?.name)
 }
 
 fun NewsDb.NewsEntity.toDomain(isFavourite: Boolean = false): News {

@@ -28,7 +28,7 @@ class NewsLocalSource @Inject constructor(
         return Single.just(news)
             .map { it.toDbEntity() }
             .flatMapCompletable {
-                newsDao.saveNews(it)
+                newsDao.deleteNews(it.title)
             }.toSingle { news.copy(isFavourite = false) }
     }
 }
