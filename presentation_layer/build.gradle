@@ -58,6 +58,7 @@ dependencies {
     implementation presentationDependencies.daggerAndroidSupport
 
     testImplementation presentationTestDependencies.junit
+    testImplementation presentationTestDependencies.mockito
     androidTestImplementation presentationTestDependencies.espresso
     testImplementation presentationTestDependencies.coreTest
     androidTestImplementation presentationTestDependencies.testRunner
