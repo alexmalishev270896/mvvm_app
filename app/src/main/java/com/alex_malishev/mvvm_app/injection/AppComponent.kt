@@ -14,7 +14,8 @@ import dagger.android.support.AndroidSupportInjectionModule
     AndroidSupportInjectionModule::class,
     AppModule::class,
     ActivityModule::class,
-    ViewModelModule::class
+    ViewModelModule::class,
+    SchedulerModule::class
 ], dependencies = [DataLayerComponent::class])
 interface AppComponent: AndroidInjector<MvvmApplication> {
 
