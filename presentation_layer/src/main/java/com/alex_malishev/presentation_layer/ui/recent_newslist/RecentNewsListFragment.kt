@@ -42,10 +42,10 @@ class RecentNewsListFragment : BaseFragment(),
         newsRecyclerAdapter.onItemClickListener = this
 
         observe(recentNewsListViewModel.newsList, this::handleNewsListState)
-        handleNewsListState(ViewState.Error(Exception()))
         tryAgainButton.setOnClickListener {
             recentNewsListViewModel.getNewsList()
         }
+        recentNewsListViewModel.getNewsList()
     }
 
     override fun onClick(position: Int, item: NewsParcelable) {
