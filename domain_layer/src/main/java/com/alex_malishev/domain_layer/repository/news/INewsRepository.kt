@@ -7,4 +7,6 @@ import io.reactivex.Single
 interface INewsRepository {
 
     fun getRecentNewsList(): Single<List<News>>
+
+    fun getNewsBy(query: String): Single<List<News>>
 }

@@ -19,4 +19,10 @@ class NewsRepository @Inject constructor(
             .map { it.toDomainList() }
             .doOnError { it.printStackTrace() }
     }
+
+    override fun getNewsBy(query: String): Single<List<News>> {
+        return newsRemoteSource.everything(query)
+            .map { it.toDomainList() }
+            .doOnError { it.printStackTrace() }
+    }
 }

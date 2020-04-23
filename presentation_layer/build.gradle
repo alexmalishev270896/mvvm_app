@@ -54,6 +54,7 @@ dependencies {
     implementation presentationDependencies.rxKotlin
 
     implementation presentationDependencies.glide
+    implementation presentationDependencies.disposer
 
     implementation presentationDependencies.daggerAndroidSupport
 

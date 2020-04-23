@@ -18,8 +18,8 @@ class MainActivity : BaseActivity() {
     private var currentNavController: LiveData<NavController>? = null
 
 
-    companion object{
-        fun getMainIntent(context: Context):Intent{
+    companion object {
+        fun getMainIntent(context: Context): Intent {
             return Intent(context, MainActivity::class.java)
         }
     }
@@ -45,11 +45,11 @@ class MainActivity : BaseActivity() {
      */
     private fun setupBottomNavigationBar() {
 
-        val navGraphIds = listOf(R.navigation.recent_news
-//            R.navigation.sources,
-//            R.navigation.search,
-//            R.navigation.saved
-            )
+        val navGraphIds = listOf(
+            R.navigation.recent_news,
+            R.navigation.search,
+            R.navigation.saved
+        )
 
         // Setup the bottom navigation view with a list of navigation graphs
         val controller = bottomMenu.setupWithNavController(
@@ -59,10 +59,6 @@ class MainActivity : BaseActivity() {
             intent = intent
         )
 
-        // Whenever the selected controller changes, setup the action bar.
-        controller.observe(this, Observer { navController ->
-//            setupActionBarWithNavController(navController)
-        })
         currentNavController = controller
     }
 
