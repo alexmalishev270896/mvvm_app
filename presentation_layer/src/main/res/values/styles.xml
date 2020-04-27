@@ -23,6 +23,11 @@
         <item name="android:textColorSecondary">@android:color/black</item>
     </style>
 
+    <style name="AppTheme.AppBarOverlay.Transparent" parent="AppTheme.AppBarOverlay" >
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="elevation">0dp</item>
+    </style>
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 
     <style name="SplashTheme" parent="AppTheme.NoActionBar">

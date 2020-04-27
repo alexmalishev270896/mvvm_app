@@ -11,12 +11,26 @@ import javax.inject.Inject
 class NewsRepository @Inject constructor(
     private val newsRemoteSource: INewsRemoteSource,
     private val newsLocalSource: INewsLocalSource
-): INewsRepository {
+) : INewsRepository {
 
 
     override fun getRecentNewsList(): Single<List<News>> {
         return newsRemoteSource.topHeadlines()
-            .map { it.toDomainList() }
+            .map { listResponse ->
+                listResponse
+                    .toDomainList()
+                    .distinctBy { it.title }
+            }
+            .doOnError { it.printStackTrace() }
+    }
+
+    override fun getNewsBy(query: String): Single<List<News>> {
+        return newsRemoteSource.everything(query)
+            .map { listResponse ->
+                listResponse
+                    .toDomainList()
+                    .distinctBy { it.title }
+            }
             .doOnError { it.printStackTrace() }
     }
 }

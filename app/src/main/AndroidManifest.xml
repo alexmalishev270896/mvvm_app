@@ -18,9 +18,11 @@
         tools:targetApi="n">
 
         <activity android:name="com.alex_malishev.presentation_layer.ui.MainActivity"
+            android:windowSoftInputMode="adjustNothing"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity android:name="com.alex_malishev.presentation_layer.ui.splashscreen.SplashActivity"
+            android:windowSoftInputMode="adjustNothing"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

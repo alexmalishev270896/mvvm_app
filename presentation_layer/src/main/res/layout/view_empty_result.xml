@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:tint="@android:color/darker_gray"
+        app:srcCompat="@drawable/search_placeholder" />
+
+    <TextView
+        android:id="@+id/textHint"
+        android:layout_width="wrap_content"
+        android:maxWidth="250dp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        tools:text="We're sorry. There is no result"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/tryAgainButton"
+        android:layout_width="150dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/try_again"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

@@ -31,6 +31,7 @@ object NetModule {
     }
 
     @Provides
+    @Singleton
     fun provideServiceGenerator(
         okBuilder: OkHttpClient.Builder, retrofit: Retrofit.Builder,
         authenticationInterceptor: AuthenticationInterceptor,

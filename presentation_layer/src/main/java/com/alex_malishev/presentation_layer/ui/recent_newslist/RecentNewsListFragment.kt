@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.alex_malishev.presentation_layer.R
 import com.alex_malishev.presentation_layer.common.ViewState
 import com.alex_malishev.presentation_layer.common.observe
+import com.alex_malishev.presentation_layer.common.setInteractionEnabled
 import com.alex_malishev.presentation_layer.model.NewsParcelable
 import com.alex_malishev.presentation_layer.ui.base.BaseFragment
 import com.alex_malishev.presentation_layer.ui.base.ControllableAppbarBehaviour
@@ -42,9 +43,9 @@ class RecentNewsListFragment : BaseFragment(),
         newsRecyclerAdapter.onItemClickListener = this
 
         observe(recentNewsListViewModel.newsList, this::handleNewsListState)
-        tryAgainButton.setOnClickListener {
+        errorPlaceholder.setOnTryAgainClickListener(View.OnClickListener{
             recentNewsListViewModel.getNewsList()
-        }
+        })
         recentNewsListViewModel.getNewsList()
     }
 
@@ -55,17 +56,18 @@ class RecentNewsListFragment : BaseFragment(),
     private fun handleNewsListState(state: ViewState<List<NewsParcelable>>) {
         when (state) {
             is ViewState.Loading -> {
-                recentProgressBar.show()
+                recentProgressBar.visibility = View.VISIBLE
                 newsAppbar.setInteractionEnabled(false)
-                errorPlaceholder.visibility = View.GONE
+                showPlaceholder(false)
             }
             is ViewState.Error -> {
-                recentProgressBar.hide()
+                recentProgressBar.visibility = View.GONE
                 newsAppbar.setInteractionEnabled(false)
-                errorPlaceholder.visibility = View.VISIBLE
+                showPlaceholder(true)
             }
             is ViewState.Success -> {
-                recentProgressBar.hide()
+                recentProgressBar.visibility = View.GONE
+                showPlaceholder(state.data.isEmpty())
                 newsAppbar.setInteractionEnabled(state.data.isNotEmpty())
                 newsRecyclerAdapter.clearWithoutNotify()
                 newsRecyclerAdapter.addAll(state.data)
@@ -73,9 +75,14 @@ class RecentNewsListFragment : BaseFragment(),
         }
     }
 
-    private fun AppBarLayout.setInteractionEnabled(isEnabled: Boolean) {
-        val params = layoutParams as CoordinatorLayout.LayoutParams
-        (params.behavior as ControllableAppbarBehaviour).isEnabled = isEnabled
-        layoutParams = params
+
+
+    private fun showPlaceholder(isDataEmpty: Boolean){
+        if (isDataEmpty) {
+            errorPlaceholder.show()
+            errorPlaceholder.setText(R.string.something_went_wrong)
+        }else {
+            errorPlaceholder.hide()
+        }
     }
 }

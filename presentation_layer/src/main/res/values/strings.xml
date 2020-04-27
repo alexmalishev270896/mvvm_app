@@ -11,4 +11,7 @@
     <string name="cd_saved">Saved</string>
     <string name="try_again">try again</string>
     <string name="something_went_wrong">Something went wrong. Try again</string>
+    <string name="search">Search</string>
+    <string name="hint_empty_search">We are sorry.\nThere is no result</string>
+    <string name="hint_start_search">Here you can find any news. Just start to search</string>
 </resources>

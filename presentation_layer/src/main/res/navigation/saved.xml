@@ -3,6 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/saved"
-    tools:ignore="UnusedNavigation">
+    tools:ignore="UnusedNavigation"
+    app:startDestination="@id/savedNewsFragment">
 
+    <fragment
+        android:id="@+id/savedNewsFragment"
+        android:name="com.alex_malishev.presentation_layer.ui.saved_news.SavedNewsFragment"
+        android:label="SavedNewsFragment" />
 </navigation>

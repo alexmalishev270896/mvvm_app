@@ -35,6 +35,7 @@ ext {
     glideVersion = '4.10.0'
     retrofit2rxjava2adapterVersion = '1.0.0'
     gsonVersion = "2.8.6"
+    disposerVersion = "2.0.0"
 
     //Testing
     robolectricVersion = '3.1.1'
@@ -92,7 +93,8 @@ ext {
             navUiKtx              : "androidx.navigation:navigation-ui-ktx:${navigationUiKtxVersion}",
             lifecycleExtensions   : "androidx.lifecycle:lifecycle-extensions:${lifecycleVersion}",
             lifecycleViewmodel    : "androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycleVersion}",
-            lifecycleRxStreams    : "androidx.lifecycle:lifecycle-reactivestreams-ktx:${lifecycleVersion}"
+            lifecycleRxStreams    : "androidx.lifecycle:lifecycle-reactivestreams-ktx:${lifecycleVersion}",
+            disposer              : "io.sellmair:disposer:${disposerVersion}"
     ]
 
     presentationTestDependencies = [

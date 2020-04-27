@@ -6,7 +6,6 @@ import com.alex_malishev.domain_layer.repository.news.INewsRepository
 import com.alex_malishev.domain_layer.use_case.news.GetRecentNewsUseCase
 import com.alex_malishev.domain_layer.use_case.news.IGetRecentNewsUseCase
 import com.alex_malishev.mvvm_app.injection.NewsModule
-import com.alex_malishev.mvvm_app.injection.SchedulerModule
 import com.alex_malishev.mvvm_app.injection.ViewModelFactory
 import com.alex_malishev.mvvm_app.injection.qualifiers.ViewModelKey
 import com.alex_malishev.presentation_layer.ui.recent_newslist.IRecentNewsListViewModel
@@ -39,7 +38,4 @@ abstract class NewsListModule {
             return ViewModelProvider(fragmentRecent, viewModelFactory).get(NewsListViewModel::class.java)
         }
     }
-
-
-
 }

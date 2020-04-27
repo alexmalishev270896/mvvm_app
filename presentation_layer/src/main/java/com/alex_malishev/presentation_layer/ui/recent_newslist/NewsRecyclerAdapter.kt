@@ -34,10 +34,16 @@ class NewsRecyclerAdapter @Inject constructor() : BaseRecyclerAdapter<NewsRecycl
             itemView.newsTitle.text = news.title
             itemView.newsSource.text = news.source?.name
             itemView.newsDate.text = DateUtils.toShortDate(news.date)
-            Glide.with(itemView)
-                .load(news.imageUrl)
-                .placeholder(R.drawable.placeholder_news)
-                .into(itemView.newsImage)
+            if (!news.imageUrl.isNullOrEmpty()){
+                itemView.newsImage.visibility = View.VISIBLE
+                Glide.with(itemView)
+                    .load(news.imageUrl)
+                    .placeholder(R.drawable.placeholder_news)
+                    .into(itemView.newsImage)
+            }else {
+                itemView.newsImage.visibility = View.GONE
+            }
+
         }
     }
 }
