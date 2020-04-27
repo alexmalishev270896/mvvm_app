@@ -25,6 +25,15 @@
                 app:popupTheme="@style/AppTheme.PopupOverlay"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize" />
+
+            <ProgressBar
+                android:id="@+id/recentProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:visibility="visible"
+                android:indeterminate="true"
+                android:layout_gravity="bottom"
+                android:layout_height="wrap_content"/>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -37,41 +46,14 @@
         android:layout_marginEnd="8dp"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
-    <androidx.core.widget.ContentLoadingProgressBar
-        android:id="@+id/recentProgressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:visibility="visible"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content"/>
-
-    <LinearLayout
+    <com.alex_malishev.presentation_layer.ui.custom.EmptyResultView
         android:id="@+id/errorPlaceholder"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:visibility="visible"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:maxWidth="200dp"
-            android:gravity="center"
-            android:layout_marginBottom="10dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textColor="@android:color/darker_gray"
-            android:text="@string/something_went_wrong"
-            android:layout_height="wrap_content"/>
-
-        <Button
-            android:id="@+id/tryAgainButton"
-            android:layout_width="wrap_content"
-            android:text="@string/try_again"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_height="wrap_content"/>
-
-    </LinearLayout>
+        android:layout_gravity="center"
+        android:visibility="gone"
+        app:tryAgain="true"
+        app:iconRes="@drawable/news_placeholder"
+        android:layout_height="wrap_content"/>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

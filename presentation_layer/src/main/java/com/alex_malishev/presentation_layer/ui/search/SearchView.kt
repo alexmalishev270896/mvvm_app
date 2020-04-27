@@ -1,7 +1,6 @@
 package com.alex_malishev.presentation_layer.ui.search
 
 import android.content.Context
-import android.graphics.Rect
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
@@ -9,9 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.widget.FrameLayout
+import androidx.cardview.widget.CardView
 import androidx.core.widget.doAfterTextChanged
 import com.alex_malishev.presentation_layer.R
+import com.alex_malishev.presentation_layer.utils.ViewUtil
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import kotlinx.android.synthetic.main.view_search.view.*
@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.view_search.view.*
 
 class SearchView @JvmOverloads constructor(
     context: Context, attributeSet: AttributeSet? = null, defStyleAttr: Int = 0
-) : FrameLayout(context, attributeSet, defStyleAttr) {
+) : CardView(context, attributeSet, defStyleAttr) {
 
     val textChangedEvent: Flowable<String> by lazy {
         Flowable.create<String>({ emitter ->
@@ -45,7 +45,8 @@ class SearchView @JvmOverloads constructor(
 
     init {
         LayoutInflater.from(context).inflate(R.layout.view_search, this, true)
-        setBackgroundResource(R.drawable.bg_round_white_rect)
+        radius = ViewUtil.dpToPx(10)
+        cardElevation = ViewUtil.dpToPx(6)
 
         textField.doAfterTextChanged {
             it?.let {

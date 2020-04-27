@@ -8,13 +8,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.alex_malishev.presentation_layer.R
 import com.alex_malishev.presentation_layer.common.ViewState
 import com.alex_malishev.presentation_layer.common.observe
+import com.alex_malishev.presentation_layer.common.setInteractionEnabled
 import com.alex_malishev.presentation_layer.model.NewsParcelable
 import com.alex_malishev.presentation_layer.ui.base.BaseFragment
 import com.alex_malishev.presentation_layer.ui.recent_newslist.NewsRecyclerAdapter
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.rxkotlin.subscribeBy
-import io.reactivex.schedulers.Schedulers
 import io.sellmair.disposer.disposeBy
 import io.sellmair.disposer.onDestroy
 import kotlinx.android.synthetic.main.fragment_search.*
@@ -49,7 +47,7 @@ class SearchFragment : BaseFragment() {
             .subscribe {
                 searchViewModel.search(it)
             }.disposeBy(onDestroy)
-
+        emptyPlaceholder.setText(R.string.hint_start_search)
         searchResultRecyclerView.setOnTouchListener { v, _ -> v.requestFocus(); false }
     }
 
@@ -60,16 +58,18 @@ class SearchFragment : BaseFragment() {
             is ViewState.Success -> {
                 searchView.hideProgress()
                 showPlaceholder(state.data.isEmpty())
+                searchAppBar.setInteractionEnabled(state.data.isNotEmpty())
                 newsRecyclerAdapter.clear()
                 newsRecyclerAdapter.addAll(state.data)
             }
             is ViewState.Error -> {
                 showPlaceholder(true)
                 searchView.hideProgress()
-
+                searchAppBar.setInteractionEnabled(false)
             }
             is ViewState.Loading -> {
                 searchView.showProgress()
+                searchAppBar.setInteractionEnabled(false)
             }
         }
     }
@@ -77,6 +77,7 @@ class SearchFragment : BaseFragment() {
     private fun showPlaceholder(isDataEmpty: Boolean){
         if (isDataEmpty) {
             emptyPlaceholder.show()
+            emptyPlaceholder.setText(R.string.hint_empty_search)
         }else {
             emptyPlaceholder.hide()
         }

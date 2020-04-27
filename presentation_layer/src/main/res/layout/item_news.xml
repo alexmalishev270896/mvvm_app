@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:layout_margin="5dp"
+    app:cardElevation="6dp"
     app:cardPreventCornerOverlap="false"
     app:cardCornerRadius="10dp"
     android:orientation="vertical">
@@ -19,6 +20,7 @@
             android:layout_width="150dp"
             android:layout_height="0dp"
             android:scaleType="centerCrop"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -31,11 +33,11 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            tools:text="CNN"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintEnd_toStartOf="@id/newsImage"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/newsImage" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="CNN" />
 
         <TextView
             android:id="@+id/newsDate"

@@ -8,6 +8,8 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import androidx.annotation.IdRes
+import androidx.annotation.StringRes
 import androidx.core.content.res.use
 import com.alex_malishev.presentation_layer.R
 import kotlinx.android.synthetic.main.view_empty_result.view.*
@@ -21,13 +23,23 @@ class EmptyResultView @JvmOverloads constructor(
         tryAgainButton.visibility = if (new) View.VISIBLE else View.GONE
     }
 
+    var icon: Int by Delegates.observable(0){_, _, new ->
+        imageView.setImageResource(new)
+    }
+
+    var text: String by Delegates.observable(""){_, _, new ->
+        textHint.text = new
+    }
+
     init {
         LayoutInflater.from(context).inflate(R.layout.view_empty_result, this, true)
 
         context.theme.obtainStyledAttributes(attributeSet, R.styleable.EmptyResultView,
             0, 0).use {
             canTryAgain = it.getBoolean(R.styleable.EmptyResultView_tryAgain, true)
+            icon = it.getResourceId(R.styleable.EmptyResultView_iconRes, 0)
         }
+
 
     }
 
@@ -46,5 +58,9 @@ class EmptyResultView @JvmOverloads constructor(
 
     fun hide() {
         visibility = View.GONE
+    }
+
+    fun setText(@StringRes resId: Int){
+        text = context.getString(resId)
     }
 }

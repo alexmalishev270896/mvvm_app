@@ -2,5 +2,6 @@
 <resources>
     <declare-styleable name="EmptyResultView">
         <attr name="tryAgain" format="boolean"/>
+        <attr name="iconRes" format="reference"/>
     </declare-styleable>
 </resources>

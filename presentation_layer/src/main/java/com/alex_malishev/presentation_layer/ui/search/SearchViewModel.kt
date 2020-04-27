@@ -1,6 +1,5 @@
 package com.alex_malishev.presentation_layer.ui.search
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.alex_malishev.domain_layer.use_case.search.ISearchUseCase
